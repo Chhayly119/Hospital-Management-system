@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: bold;
+  color: #6c63ff;
+}
+
+.nav a {
+  margin: 0 10px;
+  font-size: 14px;
+}
+
+.auth-buttons button {
+  margin-left: 10px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border: none;
+}
+
+.sign-in {
+  background-color: #ddd;
+}
+
+.register {
+  background-color: #6c63ff;
+  color: #fff;
+} 

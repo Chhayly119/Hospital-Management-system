@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
 import '../assets/Home.css';
-
-
+import '../assets/about.css';
+import DoctorsSection from './doctor';
+import ContactForm from './contactform';
+import Footer from './footer';
+import GetStarted from './getstart';
 
 const Carousel = () => {
   const [activeIndex, setActiveIndex] = useState(2); // Active index for titles
   const [descIndex, setDescIndex] = useState(12); // Active index for descriptions
   const [orders, setOrders] = useState([0, 1, 2, 3, 4]);
   const [isLoading, setIsLoading] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
+  const [isAboutLoading, setIsAboutLoading] = useState(false);
+  const [showGetStarted, setShowGetStarted] = useState(false);
 
   const courses = [
     "internal medicine i",
@@ -64,93 +70,174 @@ const Carousel = () => {
     }, 500);
   };
 
+  const handleAboutClick = () => {
+    setIsAboutLoading(true);
+    
+    setTimeout(() => {
+      setIsAboutLoading(false);
+      setShowAbout(true);
+    }, 500);
+  };
+
+  const handleGetStartedClick = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+    
+    setTimeout(() => {
+      setIsLoading(false);
+      setShowGetStarted(true);
+    }, 500);
+  };
+
   return (
     <div className="Carousel-Container">
-      <div className="home-popular">
-        <h3>Golden Health Care</h3>
+      {!showAbout && !showGetStarted ? (
+        // Main carousel content
+        <>
+          <div className="home-popular">
+            <h3>Golden Health Care</h3>
 
-        <div className="slider">
-          <div className="slider-prev" onClick={handlePrev}></div>
-          <ul>
-            {images.map((src, index) => (
-              <li key={index} style={{ order: orders[index] }}>
-                <img
-                  className={`item ${
-                    orders[index] === 0
-                      ? 'small1'
-                      : orders[index] === 1
-                      ? 'big1'
-                      : orders[index] === 2
-                      ? 'focus'
-                      : orders[index] === 3
-                      ? 'big2'
-                      : 'small2'
-                  }`}
-                  src={src}
-                  alt={`Course ${index}`}
-                />
-              </li>
-            ))}
-          </ul>
-          <div className="slider-next" onClick={handleNext}></div>
+            <div className="slider">
+              <div className="slider-prev" onClick={handlePrev}></div>
+              <ul>
+                {images.map((src, index) => (
+                  <li key={index} style={{ order: orders[index] }}>
+                    <img
+                      className={`item ${
+                        orders[index] === 0
+                          ? 'small1'
+                          : orders[index] === 1
+                          ? 'big1'
+                          : orders[index] === 2
+                          ? 'focus'
+                          : orders[index] === 3
+                          ? 'big2'
+                          : 'small2'
+                      }`}
+                      src={src}
+                      alt={`Course ${index}`}
+                    />
+                  </li>
+                ))}
+              </ul>
+              <div className="slider-next" onClick={handleNext}></div>
+            </div>
+
+            <div className="description">
+              {courses.map((course, index) => (
+                <h3
+                  key={index}
+                  data-index={index}
+                  className={activeIndex === index ? 'active' : ''}
+                >
+                  {course}
+                </h3>
+              ))}
+            </div>
+
+            <div className="further-description">
+              {descriptions.map((desc, index) => (
+                <h2
+                  key={index}
+                  data-index={index + 10}
+                  className={descIndex === index + 10 ? 'active' : ''}
+                >
+                  {desc}
+                </h2>
+              ))}
+            </div>
+          </div>
+
+          <div className="home-header">
+            <h1>Welcome</h1>
+            <h1>to our</h1>
+            <h1>Health Care</h1>
+          </div>
+
+          
+        </>
+      ) : showAbout ? (
+        // About page content
+        <div className="about-page">
+          <button 
+            className="back-button"
+            onClick={() => setShowAbout(false)}
+          >
+            Back to Home
+          </button>
+          <div className="about-content">
+            <DoctorsSection />
+            <ContactForm />
+            <Footer />
+          </div>
         </div>
+      ) : (
+        // Get Started content
+        <GetStarted />
+      )}
 
-        <div className="description">
-          {courses.map((course, index) => (
-            <h3
-              key={index}
-              data-index={index}
-              className={activeIndex === index ? 'active' : ''}
-            >
-              {course}
-            </h3>
-          ))}
-        </div>
-
-        <div className="further-description">
-          {descriptions.map((desc, index) => (
-            <h2
-              key={index}
-              data-index={index + 10}
-              className={descIndex === index + 10 ? 'active' : ''}
-            >
-              {desc}
-            </h2>
-          ))}
-        </div>
-      </div>
-
-      <div className="home-header">
-        <h1>Welcome</h1>
-        <h1>to our</h1>
-        <h1>Health Care</h1>
-      </div>
-    <div>
-    <button 
-    type="button" 
-    className="btn-login-container" 
-    data-bs-toggle="popover" 
-    data-bs-title="Popover title" 
-    disabled={isLoading}
-    >
-      <a 
-        className="btn-login" 
-        href="/login" 
-        onClick={handleLoginClick}
-        style={{ pointerEvents: isLoading ? 'none' : 'auto' }}
-      >
-        Click Here to Start
-      </a>
-    </button>
-      </div>
-
-      {isLoading && (
+      {(isLoading || isAboutLoading) && (
         <div className="loading-overlay">
           <div className="loading-spinner"></div>
         </div>
       )}
+      <div>
+            <button 
+              type="button" 
+              className="btn-login-container" 
+              data-bs-toggle="popover" 
+              data-bs-title="Popover title" 
+              disabled={isLoading}
+            >
+              <a 
+                className="btn-login" 
+                href="/login" 
+                onClick={handleLoginClick}
+                style={{ pointerEvents: isLoading ? 'none' : 'auto' }}
+              >
+                Login/Register
+              </a>
+            </button>
+          </div>
+
+          <div>
+            <button 
+              type="button" 
+              className="btn-about-container" 
+              data-bs-toggle="popover" 
+              data-bs-title="Popover title" 
+              disabled={isLoading}
+            >
+              <a 
+                className="btn-about" 
+                onClick={handleAboutClick}
+                style={{ pointerEvents: isLoading ? 'none' : 'auto', cursor: 'pointer' }}
+              >
+                About Us
+              </a>
+            </button>
+          </div>
+          <div>
+            <button 
+              type="button" 
+              className="btn-getstarted-container" 
+              data-bs-toggle="popover" 
+              data-bs-title="Popover title" 
+              disabled={isLoading}
+            >
+              <a 
+                className="btn-getstarted" 
+                href='/getstarted'
+                style={{ pointerEvents: isLoading ? 'none' : 'auto', cursor: 'pointer' }}
+              >
+                Get Started 
+              </a>
+            </button>
+          </div>
     </div>
+    
   );
+  
 };
 
 export default Carousel;

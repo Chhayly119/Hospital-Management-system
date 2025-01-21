@@ -278,12 +278,73 @@
 .btn-login-container{
     position: absolute;
     bottom: 5%;
-    right: 40%;
+    right: 0%;
     background-color:#07ba5e;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 .btn-login{
     text-decoration: none;
     color: #fff;
-    font-size: 20px;
+    font-size: 25px;
+}
+.btn-about-container{
+    position: absolute;
+    bottom: 90%;
+    right: 0%;
+    background-color:hsl(0, 92%, 44%);
+    border-radius: 10px;
+}
+.btn-about{
+    text-decoration: none;
+    color: #fff;
+    font-size: 25px;
+}
+.btn-about-container:hover{
+    transform: scale(1.1);
+}
+.btn-login-container:hover{
+    transform: scale(1.1);
+}
+
+.about-section {
+  padding: 40px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  padding: 12px 24px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.back-button:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+}
+.btn-getstarted-container{
+    position: absolute;
+    bottom: 5%;
+    right: 45%;
+    background-color:#0d31e4;
+    border-radius: 10px;
+
+}
+.btn-getstarted{
+    text-decoration: none;
+    color: #fff;
+    font-size: 40px;
 }
