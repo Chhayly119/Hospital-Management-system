@@ -1,5 +1,11 @@
 import React from 'react';
-import './HeroSection.css';
+import { Link } from 'react-router-dom';
+import '../assets/HeroSection.css';
+import './appointment';
+
+
+
+
 
 const HeroSection = () => {
   return (
@@ -12,7 +18,7 @@ const HeroSection = () => {
           the comfort of your home. Our platform makes healthcare accessible, efficient, 
           and patient-centered.
         </p>
-        <button className="cta-button">Book Appointment</button>
+        <Link to="/appointment" className="cta-button">Book Appointment</Link>
       </div>
       <div className="hero-image">
         <img 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './BiographySection.css';
+import '../assets/BiographySection.css';
 
 const BiographySection = () => {
   return (
@@ -37,3 +37,4 @@ const BiographySection = () => {
 };
 
 export default BiographySection;
+

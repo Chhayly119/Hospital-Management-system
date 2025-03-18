@@ -1,5 +1,10 @@
 import React from 'react';
-import './Header.css';
+import '../assets/Header.css';
+import './appointment';
+
+
+
+
 
 const Header = () => {
   return (
@@ -7,7 +12,7 @@ const Header = () => {
       <div className="logo">MediLab Hospital</div>
       <nav className="nav">
         <a href="#">Home</a>
-        <a href="#">Appointment</a>
+        <a href="/appointment">Appointment</a>
         <a href="#">Services</a>
         <a href="#">About Us</a>
         <a href="#">Contact Us</a>
@@ -21,3 +26,4 @@ const Header = () => {
 };
 
 export default Header;
+

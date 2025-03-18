@@ -7,6 +7,7 @@ import Carousel from '../components/carousel';
 
 
 
+
 const Dashboard = () => {
   return (
     <div className="container-dashboard">
